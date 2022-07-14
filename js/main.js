@@ -108,8 +108,9 @@ function numeroRandomBombe(min, max){
 
 //controllo se l'utente ha cliccato su una bomba
 function clickCheck (square, index, bombPosition){
+    //verifico che ci sia una bomba
     const isBomba = bombPosition.includes(index + 1);
-
+    //se la bomba c'è, allora la cella diventerà rossa
     if(isBomba){
         square.classList.add('bg-red');
     }else{
@@ -130,13 +131,13 @@ function showBombe (bombeToShow){
         }
     }
 }
-
+//creo una funzione in cui mi blocca le celle dopo aver trovato una bomba
 function squareBlock (){
     gridDom.classList.add('game-over');
 }
 
 
-
+// creo una funzione generica che venga richiamata nella mia funzione principale
 function addClickToSquares (posizioneBomba){
     let punti = 0;
     const selectSquares = document.querySelectorAll('.square');
@@ -144,6 +145,7 @@ function addClickToSquares (posizioneBomba){
     for(let i = 1; i < selectSquares.length; i++){
         const square = selectSquares[i];
 
+        
         square.addEventListener('click', () =>{
             const gameOver = clickCheck(square, i, posizioneBomba);
             if(gameOver){
